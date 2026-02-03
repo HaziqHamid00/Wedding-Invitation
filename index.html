@@ -25,16 +25,14 @@
   <div id="sealGlow" class="seal-glow"></div>
 </div>
 
-<!-- ================= OPEN ENVELOPE ================= -->
-
-<div id="openStage" class="stage hidden">
-  <img src="card1.png" class="full-img envelope-open">
-</div>
-
-<!-- ================= LETTER CONTENT ================= -->
+<!-- ================= LETTER CONTENT (All in one stage) ================= -->
 
 <div id="letterStage" class="stage hidden">
-
+  
+  <!-- Envelope stays as background -->
+  <img src="card1.png" class="full-img envelope-bg" id="envelopeBg">
+  
+  <!-- Letters appear on top -->
   <img src="card2.png" class="letter letter-main" id="card2">
   <img src="card3.png" class="letter">
   <img src="card4.png" class="letter">
@@ -114,7 +112,7 @@ function startOpen(){
 
   setTimeout(()=>{
     document.getElementById("coverStage").classList.add("hidden");
-    showOpenEnvelope();
+    showLetterContent();
   },800);
 }
 
@@ -144,42 +142,31 @@ function musicFadeIn(){
   },100);
 }
 
-/* ================= STAGE 2 ================= */
+/* ================= SHOW LETTER CONTENT ================= */
 
-function showOpenEnvelope(){
-  const open = document.getElementById("openStage");
-  open.classList.remove("hidden");
-  
-  // Force reflow
-  void open.offsetWidth;
-  
-  open.classList.add("open-zoom");
-  
-  // Animate letters sequentially
-  setTimeout(() => {
-    document.getElementById("openStage").classList.add("fade-out");
-    setTimeout(showLetter, 400);
-  }, 800);
-}
-
-/* ================= STAGE 3 ================= */
-
-function showLetter(){
+function showLetterContent(){
   const stage = document.getElementById("letterStage");
   stage.classList.remove("hidden");
   
-  // Animate letters with staggered delay
-  const letters = document.querySelectorAll('.letter');
-  letters.forEach((letter, index) => {
-    setTimeout(() => {
-      letter.classList.add('letter-out');
-    }, 300 * index);
-  });
+  // Add zoom animation to envelope background
+  const envelope = document.getElementById("envelopeBg");
+  envelope.classList.add("open-zoom");
+  
+  // Delay letter animation slightly to allow envelope to zoom first
+  setTimeout(() => {
+    // Animate letters with staggered delay
+    const letters = document.querySelectorAll('.letter');
+    letters.forEach((letter, index) => {
+      setTimeout(() => {
+        letter.classList.add('letter-out');
+      }, 400 * index);
+    });
+  }, 400);
   
   // Add more dust after letters appear
   setTimeout(() => {
     spawnDust(40);
-  }, 1200);
+  }, 1500);
 }
 
 /* ================= COUNTDOWN ================= */
