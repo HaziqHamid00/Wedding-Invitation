@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wedding Invitation</title>
-
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,10 +14,13 @@
   <!-- CLOSED ENVELOPE -->
   <div id="coverStage" class="stage">
     <img src="cover.png" class="full-img">
+
+    <!-- adjusted seal click zone -->
     <div id="seal" class="seal-click"></div>
   </div>
 
-  <!-- OPEN ENVELOPE + LETTER SLIDE -->
+
+  <!-- OPEN ENVELOPE + SLIDE LETTER -->
   <div id="openStage" class="stage hidden">
 
     <!-- opened envelope -->
@@ -29,7 +31,8 @@
 
   </div>
 
-  <!-- SCROLL CONTENT -->
+
+  <!-- REST OF CONTENT -->
   <div id="contentStage" class="hidden">
     <img src="card3.png" class="invitation-card">
     <img src="card4.png" class="invitation-card">
@@ -48,24 +51,22 @@ const wrapper = document.getElementById("wrapper");
 
 seal.onclick = () => {
 
-  // fade closed envelope
   cover.classList.add("fade-out");
 
   setTimeout(()=>{
     cover.classList.add("hidden");
     openStage.classList.remove("hidden");
 
-    // start slide animation
+    // start letter slide
     letter.classList.add("slide-up");
 
-  },600);
+  },500);
 
-  // after slide finishes → enable scroll + show rest
+  // enable scroll after slide finishes
   setTimeout(()=>{
     wrapper.classList.add("scrollable");
     content.classList.remove("hidden");
   },2000);
-
 };
 </script>
 
