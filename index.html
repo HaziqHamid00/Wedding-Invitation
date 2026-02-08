@@ -45,15 +45,18 @@
         </button>
 
         <!-- Card (slides up to cover envelope, then flip) -->
-        <div id="flipContainer" class="flipContainer" aria-label="Invitation card (tap to flip)">
-          <div id="flipCard" class="flipCard">
-            <img class="cardFace cardFront" src="card1.png" alt="Card front" draggable="false" />
-            <img class="cardFace cardBack"  src="card2.png" alt="Card back"  draggable="false" />
-          </div>
-          <div class="flipHint">Tap card to flip</div>
+       <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+    <div class="flipper">
+        <div class="front">
+            <!-- Front side image -->
+            <img src="card1.png" alt="Front Side">
         </div>
-
-      </div>
+        <div class="back">
+            <!-- Back side image -->
+            <img src="card2.png" alt="Back Side">
+        </div>
+    </div>
+</div>
     </section>
 
     <!-- ===== DOA SECTION (scroll-based reveal) ===== -->
@@ -294,4 +297,5 @@
   </script>
 </body>
 </html>
+
 
